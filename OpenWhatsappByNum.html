@@ -2,88 +2,99 @@
 <html>
 
 <head>
-  <title>Open WhatsApp</title>
+  <title>Open WhatsApp with Phone #</title>
   <style>
-  html { font-size: calc(1em + 1vw) }
+    html {
+      font-size: calc(1em + 1vw)
+    }
 
-label {
-  display:block;
-  font-size: 2em;
-}
+    label {
+      display: block;
+      font-size: 2em;
+    }
 
-button, input {
-  font-size: 2em;
-  width: 80%;
-}
+    button,
+    input {
+      font-size: 2em;
+      width: 80%;
+    }
 
-input[type=tel]
-{
-  padding: 12px 20px;
-  margin: 4px auto;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  text-align: center;
-}
+    input[type=tel] {
+      padding: 12px 20px;
+      margin: 4px auto;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      box-sizing: border-box;
+      text-align: center;
+    }
 
-h1 {
-  text-align:center;
-  font-size: 2.5em;
-}
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-block-start: 20px;
+      margin-block-end: 200px;
+    }
 
-.button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    .button {
+      background-color: #128C7E;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
 
-.button:hover {
-  background-color: #45a049;
-}
+    .button:hover {
+      background-color: #075E54;
+    }
 
-div {
-  position: fixed;
-  display: block;
-  top: 40%;
-  left: 12.35%;
-  width: 70%;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  margin: auto;
-  padding: 1em;
-  text-align: center;
-}
-</style>
+    div {
+      position: fixed;
+      display: block;
+      top: 10%;
+
+      left: 12.35%;
+      width: 70%;
+      border-radius: 25px;
+      background-color: #f2f2f2;
+      margin: auto;
+      padding: 1em;
+      text-align: center;
+    }
+  </style>
 
 
 </head>
 
-<body>
-
-  <h1>Open WhatsApp via Phone #</h1>
-
+<body style="background-color: black;">
   <div>
-      <label for="phone" style:text-align:center> <strong>PHONE #</strong></label>
-      <input type="tel" id="phone" name="phone" pattern="[0-9]*" required>
-      <button class="button" onclick="OpenLink()">OPEN WHATSAPP</button>
+    <h1>Open WhatsApp with Phone #</h1>
+    <!-- <label for="phone" style:text-align:center> <strong>PHONE #</strong></label> -->
+    <input type="tel" id="phone" name="phone" pattern="[0-9]*" placeholder="PHONE #" required>
+    <button class="button" onclick="OpenLink()">OPEN WHATSAPP</button>
   </div>
 
   <script>
-  function GetPhoneNo() {
-  var phoneNoRaw = document.getElementById("phone").value
-  /* var phoneNo = FormatPhoneNumber(phoneNoRaw); */
-  var phoneNo = phoneNoRaw;
-  return phoneNo;
-}
-function OpenLink() {
-  window.open("https://api.whatsapp.com/send?phone=" + GetPhoneNo(), '_blank');
-}
-</script>
+    function GetPhoneNo() {
+      let phoneNoRaw = document.getElementById("phone").value
+      let phoneNo = FormatPhoneNumber(phoneNoRaw);
+      //phoneNo = phoneNoRaw;
+      return phoneNo;
+    }
+    function OpenLink() {
+      window.open("https://api.whatsapp.com/send?phone=" + GetPhoneNo(), '_blank');
+    }
+    function FormatPhoneNumber(phoneNoRaw) {
+      let phoneNo = phoneNoRaw.replace(/\-|\.|\+/g, '');
+      if (phoneNo.charAt(0) == 0) {
+        phoneNo = phoneNo.replace(/^0+/, '972');
+      }
+      return phoneNo;
+    }
+
+  </script>
 
 </body>
 
